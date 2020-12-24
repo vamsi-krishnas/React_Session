@@ -11,29 +11,25 @@ class App extends Component {
   ],
   showPersons : false
   }
-  swapstateHandler = () => {
-    this.setState(
-      {
-        persons: [
-          {name: "Vamsikrishna", city: "Vizag"},
-          {name :"Dilip", city:"Hyd" },
-          {name :"Gustavo", city:"Mexico"}
-      ]
-      }
-    )
-  }
-  
-  
-  showPersonsHandler = (id) => {
-    const doesShow = this.state.showPersons;
-    const persons = [...this.state.persons]; 
+
+  nameChangeHandler = (event, id) => {
     const personIndex = this.state.persons.findIndex( p => {
       return p.id === id;
     })
-    persons[personIndex] = Person;
-    
-    this.setState({ showPersons: !doesShow});
+    const person = {
+      ...this.state.persons[personIndex]
+    }
+    person.name = event.target.value;
+    const persons = [...this.state.persons]; 
+    persons[personIndex] = person;
     this.setState({persons:persons})
+
+  }
+  
+  showPersonsHandler = (id) => {
+    const doesShow = this.state.showPersons;
+    this.setState({ showPersons: !doesShow});
+    
   }
   deleteHandler = (personIndex) => {
     const persons = this.state.persons;
@@ -49,7 +45,8 @@ class App extends Component {
           return <Person name={persons.name}
           city={persons.city}
           key= {persons.id}
-          click={() => this.deleteHandler( index) }/>
+          click={() => this.deleteHandler( index) }
+          changed={(event) => this.nameChangeHandler(event, persons.id)}/>
         })}
       </div>
       )
