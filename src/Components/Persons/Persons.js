@@ -7,7 +7,7 @@ const Persons= (props) =>
         name={persons.name}
         city={persons.city}
         key= {persons.id}
-        click={props.clicked(index) }
+        click={() => props.clicked(index) }
         changed={(event) => props.changed(event, persons.id)}/> 
     } );
 
