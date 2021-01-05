@@ -4,6 +4,10 @@ import Cabin from './Cabin/Cabin';
 import Persons from './Persons/Persons';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    console.log('App js Constructor')
+  }
   state = {
     persons: [
       {id : "name2", name: "Vamsi", city: "Hyd"},
@@ -11,6 +15,13 @@ class App extends Component {
       {id : "name4", name :"Gustavo", city:"Tijuana"}
   ],
   showPersons : false
+  }
+  static getDerivedStateFromProps(props, state) {
+    console.log('App js getDerivedStateFromProps', props, state);
+    return state;
+  }
+  componentDidMount() {
+    console.log(' App Js component Did Mount')
   }
 
   nameChangeHandler = (event, id) => {

@@ -1,13 +1,21 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './Person.css';
 
-const person = (props) => {
+class person extends Component {
+  componentWillUnmount(){
+    console.log('Person js componentWillUnmount');
+    return true;
+  }
+  render() {
     return (
       <div className="Persons">
-            <p onClick={props.click}>I'm {props.name} and I am from {props.city} </p>
-            <input type="text" onChange={props.changed} value={props.name}></input>
+            <p onClick={this.props.click}>I'm {this.props.name} and I am from {this.props.city} </p>
+            <input type="text" onChange={this.props.changed} value={this.props.name}></input>
         </div>
     )
+
+  }
+    
     
   // return React.createElement('h1', null, 'I am Vamsi');
 } 
