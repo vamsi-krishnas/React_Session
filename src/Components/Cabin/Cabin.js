@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Cabin.css';
 
 const Cabin = (props) => {
+    useEffect(() => {
+      console.log('cabin js useEffect');
+      // http calls
+    }, [props.persons]);
     const style = {
         background : 'white',
         margin : '10px',

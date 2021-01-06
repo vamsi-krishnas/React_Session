@@ -6,13 +6,17 @@ class Persons extends Component {
     /* static getDerivedStateFromProps(props, state) {
         console.log('persons js getDerivedStateFromProps')
     } */
-    shouldComponentUpdate(nextProps, nestState) {
+    shouldComponentUpdate(nextProps, nextState) {
         console.log('persons js shouldComponentUpdate')
         return true;
     }
     getSnapshotBeforeUpdate(prevProps, prevState) {
         console.log('Persons js getSnapshotBeforeUpdate')
-        return true;
+        return { message: 'Snapshot!'};
+    }
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        console.log('persons.js componentDidUpdate')
+        console.log( snapshot)
     }
     render() {
         return this.props.persons.map( (persons, index)=> {
