@@ -1,7 +1,8 @@
 import './App.css';
-import { Component } from 'react';
+import React, { Component } from 'react';
 import Cabin from './Cabin/Cabin';
 import Persons from './Persons/Persons';
+import newWrapper from '../hoc/NewWrapper';
 
 class App extends Component {
   constructor(props) {
@@ -73,4 +74,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default newWrapper(App);
