@@ -21,11 +21,15 @@ class Persons extends Component {
     render() {
         return this.props.persons.map( (persons, index)=> {
             return (<Person 
+            id={persons.id}
             name={persons.name}
             city={persons.city}
+            zip= {persons.zip}
             key= {persons.id}
             click={() => this.props.clicked(index) }
-            changed={(event) => this.props.changed(event, persons.id)}/> 
+            changed={(event) => this.props.changed(event, persons.id)}
+            zipchange= {(event) => this.props.zipchange(event, persons.id)}
+            /> 
             )
         } );
 

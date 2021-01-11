@@ -11,9 +11,9 @@ class App extends Component {
   }
   state = {
     persons: [
-      {id : "name2", name: "Vamsi", city: "Hyd"},
-      {id : "name1", name :"Dilip", city:"Hyd" },
-      {id : "name4", name :"Gustavo", city:"Tijuana"}
+      {id : "name2", name: "Vamsi", city: "Hyd", zip:234567},
+      {id : "name1", name :"Dilip", city:"Hyd", zip:458900 },
+      {id : "name4", name :"Gustavo", city:"Tijuana", zip: 751920}
   ],
   showPersons : false
   }
@@ -35,7 +35,21 @@ class App extends Component {
     person.name = event.target.value;
     const persons = [...this.state.persons]; 
     persons[personIndex] = person;
-    this.setState({persons:persons})
+    this.setState({persons:persons, })
+  }
+  zipChangeHandler = (event, id) => {
+    
+    const personIndex = this.state.persons.findIndex( p => {
+      return p.id === id;
+    })
+    const person = {
+      ...this.state.persons[personIndex]
+    }
+    person.zip = event.target.value;
+    console.log(person.zip);
+    const persons = [...this.state.persons]; 
+    persons[personIndex] = person;
+    this.setState({persons:persons, })
   }
   
   showPersonsHandler = (id) => {
@@ -56,6 +70,7 @@ class App extends Component {
         persons = {this.state.persons}
         clicked = {this.deleteHandler}
         changed = {this.nameChangeHandler}
+        zipchange = {this.zipChangeHandler}
         />
       </div>
       )
