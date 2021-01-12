@@ -2,8 +2,10 @@ import React, {Component} from 'react';
 import './Person.css';
 import NewWrapper from '../../../hoc/NewWrapper';
 import PropTypes from 'prop-types';
+import AuthContext from '../../../context/auth-context';
 
 class person extends Component {
+  static contextType = AuthContext;
   componentWillUnmount(){
     console.log('Person js componentWillUnmount');
     return true;
@@ -11,9 +13,15 @@ class person extends Component {
   componentDidMount(){
     this.inputElement.focus();
   } 
+
   render() {
     return (
       <div className="Persons">
+        {this.context.authenticate ? (
+          <p> Authenticated</p>
+        ) : (
+          <p> Please Login</p>
+        )}
         <p>{this.props.id}</p>
             <p onClick={this.props.click}>I'm {this.props.name} and I am from {this.props.city} </p>
             <input type="text" onChange={this.props.changed} value={this.props.name}></input>

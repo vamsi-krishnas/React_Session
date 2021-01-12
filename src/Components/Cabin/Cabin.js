@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import './Cabin.css';
-
+import AuthContext from '../../context/auth-context';
 const Cabin = (props) => {
+  const authContext = useContext(AuthContext);
     useEffect(() => {
       console.log('cabin js useEffect');
       // http calls
@@ -23,7 +24,9 @@ const Cabin = (props) => {
     return (
         <div>
            <p className={classes.join(' ')}>Look at Me</p>
+           <button onClick={authContext.login}>Login </button>
            <button style={style} onClick={props.clicked}>Toggle Me</button>
+
         </div>
     )
 }

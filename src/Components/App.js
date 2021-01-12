@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Cabin from './Cabin/Cabin';
 import Persons from './Persons/Persons';
 import newWrapper from '../hoc/NewWrapper';
+import AuthContext from '../context/auth-context';
 
 class App extends Component {
   constructor(props) {
@@ -15,7 +16,8 @@ class App extends Component {
       {id : "name1", name :"Dilip", city:"Hyd", zip:458900 },
       {id : "name4", name :"Gustavo", city:"Tijuana", zip: 751920}
   ],
-  showPersons : false
+  showPersons : false,
+  authenticate: false
   }
   static getDerivedStateFromProps(props, state) {
     console.log('App js getDerivedStateFromProps', props, state);
@@ -61,6 +63,9 @@ class App extends Component {
     persons.splice(personIndex, 1);
     this.setState({persons:persons})
   }
+  loginHandler = () => {
+    this.setState( { authenticate: true});
+  }
   render() {
     let personsList = [];
     if (this.state.showPersons) {
@@ -79,11 +84,18 @@ class App extends Component {
    
   return (
     <div className="App">
+      <AuthContext.Provider
+       value={{
+         authenticate : this.state.authenticate,
+         login : this.loginHandler
+       }}
+      >
       <Cabin 
       persons = {this.state.persons}
       clicked= {this.showPersonsHandler}
       />
       { personsList }
+      </AuthContext.Provider>
     </div>
   );
   }
